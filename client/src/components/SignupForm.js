@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
+// import { createUser } from '../utils/API';
+// add user from query GQL
 import { useMutation } from '@apollo/client';
 import  { ADD_USER } from '../utils/mutations';
-
-//import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
@@ -16,7 +16,7 @@ const SignupForm = () => {
   const [showAlert, setShowAlert] = useState(false);
   // add_user import mutations from front and back end
   const [addUser, {error} ] = useMutation(ADD_USER);
-
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -34,7 +34,6 @@ const SignupForm = () => {
 
     try {
       const {data} = await addUser({variables:{...userFormData}});
-      // const response = await createUser(userFormData);
 
       // if (!response.ok) {
       //   throw new Error('something went wrong!');
